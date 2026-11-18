@@ -31,3 +31,6 @@ Desktop.ini
 
 # Logs
 *.log
+
+# 体积较大的宣传视频不入库（约 83MB），请按 README 说明自行放置
+mushroom-mall-server/img/*.mp4
