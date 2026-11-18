@@ -1,0 +1,56 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+spring:
+  application:
+    name: mushroom-mall-server
+  # 私密配置不入库。可复制仓库根目录 config/ai.example.yml 为 config/ai.yml。
+  # 也兼容原开发机用户目录配置；不存在的文件会被静默跳过。
+  config:
+    import:
+      - optional:file:./config/ai.yml
+      - optional:file:../config/ai.yml
+      - optional:file:${user.home}/.mushroom-secrets/ai.yml
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${MUSHROOM_DB_URL:jdbc:mysql://localhost:3306/db_mushroom_mall?useSSL=false&serverTimezone=Asia/Shanghai&characterEncoding=utf-8}
+    username: ${MUSHROOM_DB_USERNAME:root}
+    password: ${MUSHROOM_DB_PASSWORD:}
+    type: com.alibaba.druid.pool.DruidDataSource
+  redis:
+    host: ${MUSHROOM_REDIS_HOST:localhost}
+    port: ${MUSHROOM_REDIS_PORT:6379}
+    database: 0
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: auto
+      logic-delete-field: is_deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+  mapper-locations: classpath:mapper/*.xml
+
+mushroom:
+  # 从 mushroom-mall-server 目录启动时，默认读写模块内的 img 目录。
+  upload-path: ${MUSHROOM_UPLOAD_PATH:./img/}
+  # 不在公开仓库提供默认签名密钥；通过本地 ai.yml 或环境变量设置。
+  jwt-secret: ${MUSHROOM_JWT_SECRET:}
+  jwt-expiration: 168
+  ai:
+    api-url: https://api.deepseek.com/chat/completions
+    api-key: ${MUSHROOM_AI_API_KEY:}
+    model: deepseek-flash
+    disable-thinking: true

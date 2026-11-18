@@ -1,0 +1,79 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html, body, #app {
+  height: 100%;
+  font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ============ 全局美化：卡片统一圆角阴影 ============ */
+.el-card {
+  border-radius: 12px;
+  border: none;
+  box-shadow: 0 2px 12px rgba(11, 61, 46, 0.06) !important;
+}
+.el-card.is-always-shadow {
+  box-shadow: 0 2px 12px rgba(11, 61, 46, 0.06) !important;
+}
+
+/* 按钮圆角 */
+.el-button { border-radius: 6px; }
+
+/* 弹窗圆角 */
+.el-dialog {
+  border-radius: 12px;
+}
+
+/* 表格表头美化 */
+.el-table th {
+  background: #f7faf8 !important;
+  color: #4a5a52;
+  font-weight: 600;
+}
+
+/* 分页高亮色与品牌统一 */
+.el-pagination.is-background .el-pager li:not(.disabled).active {
+  background: #0F6E56;
+}
+
+/* 主按钮品牌色 */
+.el-button--primary {
+  background: #0F6E56;
+  border-color: #0F6E56;
+}
+.el-button--primary:hover,
+.el-button--primary:focus {
+  background: #12835f;
+  border-color: #12835f;
+}
+
+/* 表单输入框聚焦色 */
+.el-input__inner:focus,
+.el-textarea__inner:focus {
+  border-color: #0F6E56;
+}
+
+/* 链接色 */
+.el-link { color: #0F6E56; }
+
+/* 滚动条美化 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(15, 110, 86, 0.25);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(15, 110, 86, 0.4);
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
